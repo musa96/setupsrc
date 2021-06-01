@@ -1,0 +1,50 @@
+SETUP 1.2
+=========
+
+Welcome to my DOS Setup Program. You don't have to do much,
+you can change some things in SETUP.C and CONFIG.H and re-compile
+them.
+
+SETUP.EXE  - Main Setup Program. 
+SETUP.C    - Main Setup Program source code.
+CONFIG.C   - Code to link with your game.
+CONFIG.H   - Header to have full control over varibles.
+MAKEFILE   - Makefile for all programs.
+TEST.EXE   - Simple test program.
+TEST.C     - Source code for that test program.
+DOS4GW.EXE - Extender required for all executables.
+SETUP.TXT  - You are reading it.
+
+It is tailered for the test program.
+
+You need OpenWatcom 1.8 to compile Setup.
+
+To compile type:
+wmake test.exe to make my test program
+wmake setup.exe to make my main setup program
+
+If you get undefined references to clrscr(), add this:
+
+void clrscr(void)
+{
+        _asm 
+        {
+                mov ax,0003h
+                int 10h
+        }    
+}
+
+Not too hard? Do whatever you want, but give me some credit somewhere.
+
+Revision History:
+
+15\09\09: Press ESC in a menu will go back to the main menu.
+          If you are in the Main menu and you press ESC, it will
+          save changes and say "Type <your program name>" depending
+          on your modifications.
+25\09\09: Changed the PC Speaker sound in the test program. Fixed bug
+          where you press any other key than C and Q in the test program,
+          it quits. Added a new song when you enter graphics mode. Also
+          added both compiling in real-mode and protected-mode. If you 
+          want to re-compile in real mode, just uncomment !define 286 
+          in the makefile.
